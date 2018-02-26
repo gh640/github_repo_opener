@@ -8,6 +8,7 @@ name = "pypi"
 [packages]
 
 pygithub = "*"
+inquirer = "*"
 
 
 [dev-packages]
