@@ -9,6 +9,7 @@ name = "pypi"
 
 pygithub = "*"
 inquirer = "*"
+prompt-toolkit = "*"
 
 
 [dev-packages]
