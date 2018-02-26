@@ -7,7 +7,9 @@ import os
 import subprocess
 
 from github import Github
-import inquirer
+from prompt_toolkit import prompt
+from prompt_toolkit.contrib.completers import WordCompleter
+from prompt_toolkit.validation import Validator, ValidationError
 
 
 GITHUB_TOKEN_KYE = 'GITHUB_ACCESS_TOKEN'
@@ -28,16 +30,9 @@ def get_github_token_or_show_prompt() -> str:
         print('The access token found in {}'.format(GITHUB_TOKEN_KYE))
         return os.environ[GITHUB_TOKEN_KYE]
 
-    questions = [
-        inquirer.Password(
-            'github_access_token',
-            message='GitHub access token',
-            validate=lambda _, x: x
-        ),
-    ]
+    github_access_token = prompt('GitHub access token: ')
 
-    answers = inquirer.prompt(questions)
-    return answers['github_access_token']
+    return github_access_token
 
 
 def get_repos(access_token: str) -> dict:
@@ -46,23 +41,29 @@ def get_repos(access_token: str) -> dict:
     return {repo.name: repo.full_name for repo in g.get_user().get_repos()}
 
 
-def show_repos_prompt(repo_names) -> dict:
-    questions = [
-        inquirer.List(
-            'repo_name',
-            message='Select the repo to open',
-            choices=repo_names,
-            carousel=True,
-        ),
-    ]
+def show_repos_prompt(repo_names) -> str:
+    repo_name = prompt(
+        'repo name: ',
+        completer=WordCompleter(repo_names),
+        validator=RepoNameValidator(),
+    )
 
-    answers = inquirer.prompt(questions)
-    return answers['repo_name']
+    return repo_name
 
 
 def open_repo(full_name: str):
     repo_url = URL.format(path=full_name)
     subprocess.run(['open', repo_url])
+
+
+class RepoNameValidator(Validator):
+    def validate(self, document):
+        text = document.text
+
+        raise ValidationError(
+            message='Repo name is invalid.',
+            cursor_position=len(text),
+        )
 
 
 if __name__ == '__main__':
