@@ -31,6 +31,7 @@ db = pw.SqliteDatabase(str(CACHE_PATH.absolute()))
 
 
 @click.group()
+@click.version_option(version=__version__, prog_name='github-repo-opener')
 def main():
     validate_platform()
 
