@@ -205,3 +205,7 @@ class CacheManager:
     def delete(self, name: str):
         repo = RepoModel.select().where(RepoModel.name == name)
         repo.delete_instance()
+
+
+if __name__ == '__main__':
+    main()
