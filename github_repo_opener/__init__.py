@@ -117,7 +117,10 @@ def get_github_token_or_show_prompt() -> str:
         print('The access token found in {}'.format(GITHUB_TOKEN_KYE))
         return os.environ[GITHUB_TOKEN_KYE]
 
-    github_access_token = prompt('GitHub access token: ')
+    github_access_token = prompt(
+        'GitHub access token '
+        '(you can set it with {} instead): '.format(GITHUB_TOKEN_KYE),
+    )
 
     return github_access_token
 
