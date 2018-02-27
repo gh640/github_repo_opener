@@ -7,8 +7,10 @@ name = "pypi"
 
 [packages]
 
-PyGithub = "*"
-prompt_toolkit = "*"
+pygithub = "*"
+prompt-toolkit = "*"
+peewee = "*"
+click = "*"
 
 
 [dev-packages]
