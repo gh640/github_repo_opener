@@ -151,6 +151,7 @@ def open_repo(repo_url: str):
 class RepoNameValidator(Validator):
     def __init__(self, valid_names):
         self._valid_names = valid_names
+
     def validate(self, document):
         text = document.text
 
