@@ -21,9 +21,11 @@ __version__ = '0.1.0'
 
 GITHUB_TOKEN_KYE = 'GITHUB_ACCESS_TOKEN'
 CACHE_PATH = Path.home() / '.cache/github_repo_opener/cache.sqlite3'
+# After Python 3.3, `sys.platform` doesn't contain the major versions anymore.
 CMD_OPEN = {
     'darwin': 'open',
     'win32': 'start',
+    'linux': 'xdg-open',
 }
 
 
