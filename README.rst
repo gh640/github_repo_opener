@@ -31,6 +31,8 @@ Once installed the package, you can use `github-repo-opener` command.
 
     $ github-repo-opener
 
+.. image:: https://raw.githubusercontent.com/gh640/github_repo_opener/master/assets/capture-01-no-command.gif
+
 Prepare a local database
 ========================
 
@@ -58,6 +60,8 @@ Open a repository front page
 .. code-block:: bash
 
     $ github-repo-opener open
+
+.. image:: https://raw.githubusercontent.com/gh640/github_repo_opener/master/assets/capture-02-open.gif
 
 Drop the local database
 =======================
