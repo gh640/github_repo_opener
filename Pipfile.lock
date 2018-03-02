@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "129fc3f4da8597ea8c5d1291003e382cf2d5e770abb5161b9fa5320766e06753"
+            "sha256": "0ab173b504519648fc53744bb04b36efd3b320debe6757c8c11f86f2b8381d1e"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -36,9 +36,9 @@
         },
         "peewee": {
             "hashes": [
-                "sha256:e2df2de859ca366525430c7f2e4cd5a95029d45872dadc02f9a3403b16fb165e"
+                "sha256:46d96502ea6f84f8e66c055282ac2d6fd332ccd62c8c3c93d68a43d055cd2450"
             ],
-            "version": "==3.1.0"
+            "version": "==3.1.2"
         },
         "prompt-toolkit": {
             "hashes": [
@@ -50,9 +50,9 @@
         },
         "pygithub": {
             "hashes": [
-                "sha256:b6c1c0c1305b879b6c40b2ba957914b8ad26cd4549ac7a5e21339a0af0307b43"
+                "sha256:2e3e116a6f7f9986cecc9770be66451ed60015988151186fe97646df7f5e93cb"
             ],
-            "version": "==1.36"
+            "version": "==1.37"
         },
         "pyjwt": {
             "hashes": [
@@ -76,5 +76,13 @@
             "version": "==0.1.7"
         }
     },
-    "develop": {}
+    "develop": {
+        "check-manifest": {
+            "hashes": [
+                "sha256:c02fff2686a24bc48f625723c9d20d6866045c734300abe3d5564edb652192bc",
+                "sha256:2bb906a736a0f026cc5fd6c0dab5a481793b3d7a7d70106cca6e238da5f52d84"
+            ],
+            "version": "==0.36"
+        }
+    }
 }

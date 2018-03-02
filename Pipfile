@@ -7,11 +7,12 @@ name = "pypi"
 
 [packages]
 
-pygithub = "*"
-prompt-toolkit = "*"
+PyGithub = "*"
+prompt_toolkit = "*"
 peewee = "*"
 click = "*"
 
 
 [dev-packages]
 
+check-manifest = "*"
