@@ -16,7 +16,7 @@ from prompt_toolkit.contrib.completers import WordCompleter
 from prompt_toolkit.validation import Validator, ValidationError
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 GITHUB_TOKEN_KYE = 'GITHUB_ACCESS_TOKEN'
@@ -40,6 +40,7 @@ def main():
 
 @main.command()
 def initdb():
+    '''Creates the local database.'''
     m = CacheManager()
     m.create_db()
     m.create_table()
@@ -48,6 +49,7 @@ def initdb():
 
 @main.command()
 def dropdb():
+    '''Drops the local local database.'''
     try:
         m = CacheManager()
         m.drop_table()
@@ -59,6 +61,7 @@ def dropdb():
 
 @main.command()
 def fetch():
+    '''Fetches the list of owned repositories and stores them.'''
     token = get_github_token_or_show_prompt()
     repos = fetch_repo_data(token)
     m = CacheManager()
@@ -82,6 +85,7 @@ def fetch():
 
 @main.command()
 def show():
+    '''Shows the list of repositories stored in local database.'''
     try:
         repos = {repo.name: repo for repo in CacheManager().get_all()}
         click.echo('Total {} repo data found.'.format(len(repos)))
@@ -94,6 +98,7 @@ def show():
 
 @main.command()
 def open():
+    '''Opens a repo page with the default browser.'''
     try:
         repos = {repo.name: repo for repo in CacheManager().get_all()}
         click.echo('Total {} repo data found.'.format(len(repos)))
@@ -105,6 +110,7 @@ def open():
 
 
 def validate_platform():
+    '''Checks if the platform is supported.'''
     supported_platforms = CMD_OPEN.keys()
     if sys.platform not in supported_platforms:
         sys.exit(
