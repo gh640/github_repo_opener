@@ -17,3 +17,4 @@ click = "*"
 
 check-manifest = "*"
 "flake8" = "*"
+rstcheck = "*"
