@@ -40,6 +40,8 @@ Prepare a local database
 
     $ github-repo-opener initdb
 
+This creates a sqlite database file at :code:`~/.cache/github_repo_opener/cache.sqlite3`.
+
 Fetch repository data and store them in the local database
 ==========================================================
 
@@ -69,6 +71,8 @@ Drop the local database
 .. code-block:: bash
 
     $ github-repo-opener dropdb
+
+This deletes the sqlite database file at :code:`~/.cache/github_repo_opener/cache.sqlite3`.
 
 
 *******
