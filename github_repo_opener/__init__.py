@@ -4,29 +4,27 @@
 '''
 
 import os
-from pathlib import Path
-import subprocess
 import sys
+import subprocess
+from pathlib import Path
 
 import click
-from github import Github
 import peewee as pw
+from github import Github
 from prompt_toolkit import prompt
-from prompt_toolkit.contrib.completers import WordCompleter
+
+try:
+    from prompt_toolkit.completion import WordCompleter
+except ImportError as e:
+    from prompt_toolkit.contrib.completers import WordCompleter
 from prompt_toolkit.validation import Validator, ValidationError
 
-
-__version__ = '0.1.1'
-
+from .__version__ import __version__
 
 GITHUB_TOKEN_KYE = 'GITHUB_ACCESS_TOKEN'
 CACHE_PATH = Path.home() / '.cache/github_repo_opener/cache.sqlite3'
 # After Python 3.3, `sys.platform` doesn't contain the major versions anymore.
-CMD_OPEN = {
-    'darwin': 'open',
-    'win32': 'start',
-    'linux': 'xdg-open',
-}
+CMD_OPEN = {'darwin': 'open', 'win32': 'start', 'linux': 'xdg-open'}
 
 
 db = pw.SqliteDatabase(str(CACHE_PATH.absolute()))
@@ -69,11 +67,13 @@ def fetch():
     try:
         for repo in repos:
             try:
-                m.add({
-                    'name': repo.name,
-                    'full_name': repo.full_name,
-                    'html_url': repo.html_url,
-                })
+                m.add(
+                    {
+                        'name': repo.name,
+                        'full_name': repo.full_name,
+                        'html_url': repo.html_url,
+                    }
+                )
                 count += 1
             except pw.IntegrityError as e:
                 click.echo('Skipped duplicate repo "{}".'.format(repo.name))
@@ -128,7 +128,7 @@ def get_github_token_or_show_prompt() -> str:
 
     github_access_token = prompt(
         'GitHub access token '
-        '(you can set it with {} instead): '.format(GITHUB_TOKEN_KYE),
+        '(you can set it with {} instead): '.format(GITHUB_TOKEN_KYE)
     )
 
     return github_access_token
@@ -165,8 +165,7 @@ class RepoNameValidator(Validator):
 
         if text not in self._valid_names:
             raise ValidationError(
-                message='Repo name is invalid.',
-                cursor_position=len(text),
+                message='Repo name is invalid.', cursor_position=len(text)
             )
 
 
